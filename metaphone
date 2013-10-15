@@ -1,0 +1,14 @@
+#!/usr/local/bin/node
+
+var metaphone = require('./metafone');
+
+if (process.argv.length > 2) {
+  // deal with a file
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding('utf8');
+
+  process.stdin.on('data', function(text){
+    console.log(metaphone.convert(text));
+  });
+}
