@@ -5,13 +5,13 @@ function convert(input) {
     var word = words[index];
 
     //Drop duplicate adjacent letters, except for C.
-    var repeating = /([^c])\1/;
-    while (word.match(repeating)) {
-      word = word.replace(repeating, '$1');
+    var regex = /([^c])\1/;
+    while (word.match(regex)) {
+      word = word.replace(regex, '$1');
     }
 
     //If the word begins with 'KN', 'GN', 'PN', 'AE', 'WR', drop the first letter.
-    var beginsWith = /^[kn|gn|pn|ae|wr]/;
+    var beginsWith = /^[kn|gn|pn|ae|wr](.*)/;
     if (word.match(beginsWith)) {
       word = word.slice(1, word.length);
     }
@@ -23,7 +23,7 @@ function convert(input) {
     }
 
     // '-SCH-' becomes '-SKH-'
-    var regex = /(.*)sch(.*)/;
+    regex = /(.*)sch(.*)/;
     while (word.match(regex)) {
       word = word.replace(regex, "$1skh$2");
     }
